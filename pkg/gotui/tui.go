@@ -1,7 +1,10 @@
 package gotui
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
-func Tui() string {
-	return fmt.Sprint("Hello, Tui!")
+func PrintStars(val int) string {
+	return fmt.Sprint(strings.Repeat("*", val))
 }
