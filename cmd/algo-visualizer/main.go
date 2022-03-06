@@ -96,6 +96,10 @@ func (m model) View() string {
 		_, ops := algo.BubbleSort([]int{4, 2, 7, 5, 8, 1, 3, 9, 6}, true)
 		fmt.Printf("Operations: %v\n", ops)
 	}
+	if m.choice == "Selection sort" {
+		_, ops := algo.SelectionSort([]int{4, 2, 7, 5, 8, 1, 3, 9, 6}, true)
+		fmt.Printf("Operations: %v\n", ops)
+	}
 	if m.quitting {
 		return quitTextStyle.Render("No algo? That’s cool.")
 	}
@@ -106,6 +110,7 @@ func main() {
 	items := []list.Item{
 		item("Insertion sort"),
 		item("Bubble sort"),
+		item("Selection sort"),
 	}
 
 	const defaultWidth = 20
