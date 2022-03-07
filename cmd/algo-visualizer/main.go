@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
+	"runtime"
 
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -89,10 +91,16 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 func (m model) View() string {
 	// TODO: different strategy for selecting items
 	if m.choice == "Insertion sort" {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
 		_, ops := algo.InsertionSort([]int{4, 2, 7, 5, 8, 1, 3, 9, 6}, true)
 		fmt.Printf("Operations: %v\n", ops)
 	}
 	if m.choice == "Bubble sort" {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
 		_, ops := algo.BubbleSort([]int{4, 2, 7, 5, 8, 1, 3, 9, 6}, true)
 		fmt.Printf("Operations: %v\n", ops)
 	}
@@ -107,6 +115,17 @@ func (m model) View() string {
 }
 
 func main() {
+	osVal := runtime.GOOS
+	if osVal == "linux" {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else if osVal == "windows" {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+
 	items := []list.Item{
 		item("Insertion sort"),
 		item("Bubble sort"),

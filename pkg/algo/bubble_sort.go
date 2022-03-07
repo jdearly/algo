@@ -1,7 +1,8 @@
 package algo
 
 import (
-	"fmt"
+	"os"
+	"os/exec"
 	"time"
 
 	"github.com/jdearly/algo-visualizer/pkg/gotui"
@@ -18,17 +19,14 @@ func BubbleSort(items []int, output bool) ([]int, int) {
 			// print current order
 			// TODO: this is temporary until real tui is built
 			if output {
-				for i, v := range items {
-					if i == j {
-						fmt.Println(gotui.PrintStars(v) + " <- j")
-					} else if i == j+1 {
-						fmt.Println(gotui.PrintStars(v) + " <- j+1")
-					} else {
-						fmt.Println(gotui.PrintStars(v))
-					}
+				for _, v := range items {
+					gotui.PrintStars(v)
 				}
 				time.Sleep(500 * time.Millisecond)
 			}
+			cmd := exec.Command("clear")
+			cmd.Stdout = os.Stdout
+			cmd.Run()
 		}
 	}
 	return items, ops
