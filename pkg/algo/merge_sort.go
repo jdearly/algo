@@ -1,5 +1,6 @@
 package algo
 
+// TODO: try to make this concurrent
 func MergeSort(items []int) []int {
 	if len(items) < 2 {
 		return items
